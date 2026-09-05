@@ -1,12 +1,15 @@
-node{
-    stage ('checkout'){
-        git branch 'master',
-        url: ''
+node {
+
+    stage('Checkout') {
+        git branch: 'master',
+           url: 'https://github.com/brahmajiv7-web/playwright-test_jenkins.git'
     }
-    stage ('Install dependencies'){
+
+    stage('Install dependencies') {
         bat 'npm ci'
     }
-    stage ('Run playwright tests'){
+
+    stage('Run Playwright tests') {
         bat 'npx playwright test'
     }
 }
