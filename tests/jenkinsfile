@@ -12,4 +12,14 @@ node {
     stage('Run Playwright tests') {
         bat 'npx playwright test tests/calculator.spec.ts' 
     }
+    stage('Publish Playwright HTML Report') {
+        publishHTML([
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'playwright-report',
+            reportFiles: 'index.html',
+            reportName: 'Playwright HTML Report'
+        ])
+    }
 }
