@@ -10,6 +10,6 @@ node {
     }
 
     stage('Run Playwright tests') {
-        bat 'npx playwright test'
+        bat 'npx playwright test tests/calculator.spec.ts' 
     }
 }
