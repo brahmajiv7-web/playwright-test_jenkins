@@ -1,0 +1,12 @@
+node(windows){
+    stage ('checkout'){
+        git branch 'master',
+        url: ''
+    }
+    stage ('Install dependencies'){
+        bat 'npm ci'
+    }
+    stage ('Run playwright tests'){
+        bat 'npx playwright test'
+    }
+}
