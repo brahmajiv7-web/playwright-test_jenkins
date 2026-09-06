@@ -1,19 +1,20 @@
 node {
-    properties[(
-        parameters[(
+
+    properties([
+        parameters([
             choice(
                 name: 'TEST_FILE',
-                choices:[
-                'tests/calculator.spec.ts'
+                choices: [
+                    'tests/calculator.spec.ts'
                 ],
-            decription : 'Select the playwright test to run'
+                description: 'Select the Playwright test to run'
             )
-        )]
-    )]
+        ])
+    ])
 
     stage('Checkout') {
         git branch: 'master',
-           url: 'https://github.com/brahmajiv7-web/playwright-test_jenkins.git'
+            url: 'https://github.com/brahmajiv7-web/playwright-test_jenkins.git'
     }
 
     stage('Install dependencies') {
@@ -21,8 +22,9 @@ node {
     }
 
     stage('Run Playwright tests') {
-        bat 'npx playwright test ${params.TEST_FILE}' 
+        bat "npx playwright test ${params.TEST_FILE}"
     }
+
     stage('Publish Playwright HTML Report') {
         publishHTML([
             allowMissing: false,
