@@ -1,4 +1,15 @@
 node {
+    properties[(
+        parameters[(
+            choice(
+                name: 'TEST_FILE',
+                choices:[
+                'tests/calculator.spec.ts'
+                ],
+            decription : 'Select the playwright test to run'
+            )
+        )]
+    )]
 
     stage('Checkout') {
         git branch: 'master',
@@ -10,7 +21,7 @@ node {
     }
 
     stage('Run Playwright tests') {
-        bat 'npx playwright test tests/calculator.spec.ts' 
+        bat 'npx playwright test ${params.TEST_FILE}' 
     }
     stage('Publish Playwright HTML Report') {
         publishHTML([
